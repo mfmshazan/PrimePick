@@ -16,13 +16,13 @@ export const createProduct =  async (req, res) => {
     const product = req.body; //
 
     if (!product.name || !product.price || !product.image) {
-        return res.status(400).json({ sucess: false, message: "Please fill all fileds" })
+        return res.status(400).json({ success: false, message: "Please fill all fileds" })
     }
 
     const newProduct = new Product(product);
     try {
         await newProduct.save();
-        res.status(201).json({ sucess: true, data: newProduct });
+        res.status(201).json({ success: true, data: newProduct });
     } catch (error) {
         console.log("Error in creating product", error.message);
         return res.status(501).json({ success: false, message: "Server Error" });
