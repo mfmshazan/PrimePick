@@ -12,6 +12,12 @@ const productSchema = new mongoose.Schema({
     image: {
         type: String,
         required: true
+    },
+    category: {
+        type: String,
+        required: true,
+        enum: ['Shoes', 'Watches', 'Electronics', 'Clothing', 'Accessories', 'Sports', 'Books', 'Home & Kitchen', 'Beauty', 'Other'],
+        default: 'Other'
     }
 },{
     timestamps:true //createdAt updatedAt

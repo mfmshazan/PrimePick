@@ -15,8 +15,8 @@ export const getProduct =  async (req, res) => {
 export const createProduct =  async (req, res) => {
     const product = req.body; //
 
-    if (!product.name || !product.price || !product.image) {
-        return res.status(400).json({ success: false, message: "Please fill all fileds" })
+    if (!product.name || !product.price || !product.image || !product.category) {
+        return res.status(400).json({ success: false, message: "Please fill all fields" })
     }
 
     const newProduct = new Product(product);
@@ -39,7 +39,8 @@ export const updateProduct = async (req,res) => {
     
     try{
         const updatedProduct = await Product.findByIdAndUpdate(id,product, {new:true})
-        res.status(201).json({success:true, data:updatedProduct});    }
+        res.status(201).json({success:true, data:updatedProduct});    
+    }
     catch(error){
         console.log("Failed to upload");
         res.status(500).json({success:false, message:"Server Error"})
